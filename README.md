@@ -3,7 +3,7 @@
 Установка: 
 <br/>
 ```bash
-cp .env_example .env
+cp .env_example .env.dev
 composer i
 php bin/console app:create-mock
 symfony server:start
