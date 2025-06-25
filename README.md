@@ -6,5 +6,6 @@
 cp .env_example .env
 composer i
 php bin/console app:create-mock
+symfony server:start
 ```
 
