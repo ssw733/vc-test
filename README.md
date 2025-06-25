@@ -3,8 +3,8 @@
 Установка: 
 <br/>
 ```bash
-composer i
 cp .env_example .env
+composer i
 php bin/console app:create-mock
 ```
 
