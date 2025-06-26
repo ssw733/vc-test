@@ -12,6 +12,33 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            <a href=""><div><img height="100px" src="https://habrastorage.org/getpro/moikrug/uploads/company/100/001/361/4/logo/medium_6a03021a9756c697231e54ca6c223259.jpg"/></div></a>
+            <h1 align="center">Ваш IP {{ userIp }}, ID пользователя {{ userId }}</h1>
+            <table border="1px">
+                <tr>
+                    <th>Заголовок</th>
+                    <th>Содержимое</th>
+                    <th>Hotness</th>
+                    <th>Дата</th>
+                    <th>Просмотров</th>
+                </tr>
+            {% for post in posts %}
+                <tr data-id="{{ post.id }}">
+                    <td>{{ post.title|capitalize }}</td>
+                    <td>{{ post.data }}</td>
+                    <td>{{ post.hotness }}</td>
+                    <td>{{ post.timestamp|date('m/d/Y') }}</td>
+                    <td class="views">{{ post.views }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% endblock %}
     </body>
 </html>
+
+<style>
+    .viewed {
+        color: red;
+    }
+</style>

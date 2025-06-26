@@ -26,6 +26,9 @@ class Post
     #[ORM\Column]
     private ?int $hotness = null;
 
+    #[ORM\Column(options: ["default" => 0])]
+    private ?int $views = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -82,6 +85,18 @@ class Post
     public function setHotness(int $hotness): static
     {
         $this->hotness = $hotness;
+
+        return $this;
+    }
+
+    public function getViews(): ?int
+    {
+        return $this->views;
+    }
+
+    public function setViews(int $views): static
+    {
+        $this->views = $views;
 
         return $this;
     }

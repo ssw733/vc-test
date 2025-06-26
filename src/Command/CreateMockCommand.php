@@ -50,16 +50,17 @@ class CreateMockCommand extends Command
         $words = $filesystem->readFile('var/russian.txt');
         $words = explode(PHP_EOL, $words);
         $glossaryLength = count($words);
-        foreach (range(1, 100) as $i) {
+        foreach (range(1, $_ENV['MOCK_POSTS_AMOUNT']) as $i) {
             $post = new Post();
             $postData = '';
-            foreach (range(1, 100) as $j) {
+            foreach (range(1, $_ENV['MOCK_POSTS_WORDS_AMOUNT']) as $j) {
                 $postData .= $words[rand(0, $glossaryLength - 1)] . ' ';
             }
             $post->setData($postData);
             $post->setHotness(rand(1, 100));
             $post->setTitle($words[rand(0, $glossaryLength - 1)]);
             $post->setTimestamp(rand(0, time()));
+            $post->setViews(0);
             $this->em->persist($post);
             $this->em->flush();
             print_r('generated post: ' . $post->getId() . PHP_EOL);
