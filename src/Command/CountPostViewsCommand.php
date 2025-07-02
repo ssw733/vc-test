@@ -34,9 +34,8 @@ class CountPostViewsCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $sql = 'UPDATE post as p INNER JOIN (SELECT COUNT(*) as count, post_id FROM user_posts GROUP BY post_id) as up SET p.views = up.count';
-        //print_r($sql);die;
-        $this->em->getConnection()->executeStatement($sql);
+        $sql = 'UPDATE post as p INNER JOIN (SELECT COUNT(*) as count, post_id FROM user_posts GROUP BY post_id) as up ON p.id = up.post_id SET p.views = up.count';
+        $this->em->getConnection()->exec($sql);
 
         $io->success('ok');
 
